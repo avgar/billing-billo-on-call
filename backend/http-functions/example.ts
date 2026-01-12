@@ -1,12 +1,9 @@
-import { ok, badRequest } from 'wix-http-functions';
+import { ok, badRequest } from '@wix/serverless-api';
 
 /**
  * Example HTTP function
- *
- * @param {Object} request - The HTTP request object
- * @returns {Object} The HTTP response
  */
-export function get_example(request) {
+export function get_example(request: any) {
   const response = {
     headers: {
       'Content-Type': 'application/json'
@@ -22,11 +19,8 @@ export function get_example(request) {
 
 /**
  * Example POST function
- *
- * @param {Object} request - The HTTP request object
- * @returns {Object} The HTTP response
  */
-export function post_example(request) {
+export function post_example(request: any) {
   try {
     const body = request.body;
 
@@ -46,7 +40,7 @@ export function post_example(request) {
     };
 
     return ok(response);
-  } catch (error) {
+  } catch (error: any) {
     return badRequest({ error: error.message });
   }
 }

@@ -21,9 +21,20 @@ billing-billo-on-call/
 npm install
 ```
 
-2. Deploy to Wix:
+2. Build the project:
 ```bash
-# Follow Wix deployment instructions
+npm run build
+```
+
+3. Deploy to Wix:
+```bash
+./deploy.sh
+```
+
+Or deploy manually:
+```bash
+npm run build
+npx @wix/serverless-cli deploy
 ```
 
 ## HTTP Functions

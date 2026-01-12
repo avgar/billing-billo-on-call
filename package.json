@@ -2,9 +2,16 @@
   "name": "billing-billo-on-call",
   "version": "1.0.0",
   "description": "Wix serverless application for billing billo on-call",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "private": true,
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "echo \"No linting configured yet\""
   },
   "keywords": [
     "wix",
@@ -14,9 +21,30 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "wix-http-functions": "^1.0.0"
+    "@wix/serverless-api": "^1.276.0",
+    "@wix/serverless-runtime": "^1.389.0",
+    "@wix/wix-aspects": "^1.0.1450"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0"
+    "@types/node": "^20.0.0",
+    "typescript": "^4.9.5"
+  },
+  "wix": {
+    "framework": {
+      "type": "WIX_SERVERLESS"
+    },
+    "artifact": {
+      "groupId": "com.wixpress.billing",
+      "artifactId": "billo-on-call",
+      "targets": {
+        "docker": true
+      }
+    },
+    "validations": {
+      "postBuild": [
+        "lint",
+        "test"
+      ]
+    }
   }
 }
